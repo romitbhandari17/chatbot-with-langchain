@@ -9,7 +9,7 @@ from langchain.llms import OpenAI
 from langchain.chains import ConversationalRetrievalChain
 from flask import jsonify
 
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "xxxxyyyy"
 
 
 # You MUST add your PDF to local files in this notebook (folder icon on left hand side of screen)

@@ -4,11 +4,11 @@ import create_chunks
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 #from create_chunks import VectorDB
-index_path = "index/faiss_2.index"
+index_path = "index/faiss_csv.index"
 
 chat_history = []
 
-def answer_question_from_embeddings(query="Which are the best universities to study in london?"):
+def answer_question_from_embeddings(query="What are transformers?"):
     try:
         #global db
         print(query)

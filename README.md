@@ -1,10 +1,10 @@
-# Chatbot with PDF as Input using Open AI Models and Langchain
+# Chatbot with PDF/CSV as Input using Open AI Models and Langchain
 
 This is a chat application that leverages the power of Langchain conversational retrieval chain to provide conversational responses with access to a data source either PDF or CSV. Typically, following steps are followed:
-- The Input data source is first converted to text file, divided into chunks using langchain Recursive Character TextSplitter.
-- Then a vector index generated using OpenAI embeddings model and the chunks created. 
-- Finally, the vector index is stored in a local file or variable.
-- When a question is asked, using Conversational Retrieval Chain mechanism of Langchain, answers are provided using the index created in the last step.
+- The Input data source is first converted to text, divided into chunks using langchain Recursive Character TextSplitter.
+- Then a Vector Index generated using OpenAI embeddings model and the chunks created. 
+- Finally, the Vector Index is stored in a local file or variable.
+- When a question is asked, answers are provided using the Index created in the last step and Conversational Retrieval Chain mechanism of Langchain.
 
 
 ## Features
@@ -38,7 +38,7 @@ pip install -r requirements.txt
 - Set your OpenAI API key (required) and pinecone creds (optional) in the config.yaml file with Key 'OPENAI_API_KEY'.
 - Update the code in the app to use the correct method for accessing the API key.
 
-4. Add the PDF/CSV input file in a /data folder created under project root. Convert the PDF or CSV file input to a text file seperately using Collab or other means and add it under the same /data folder.
+4. Add the PDF/CSV input file in a /docs folder created under project root.
 
 5. Run the application:
 
@@ -48,7 +48,7 @@ python app.py
 
 6. Give the Index path in create_chunks.py and question_answers.py file.
 
-7. Create the vector index by calling the GET API with end point /create_embeddings from browser or POSTMAN. This call will create the vector index using the raw txt file and store it in the local file.
+7. Create the vector index by calling the GET API with end point /create_embeddings from browser or POSTMAN. This call will create the vector index using the input PDF/CSV file and store it in the local index file.
 
 8. Start using the chatbot with endpoint /chatbot.
 

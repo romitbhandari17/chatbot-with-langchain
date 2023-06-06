@@ -6,14 +6,14 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import FAISS
 from langchain.chains.question_answering import load_qa_chain
-from langchain.document_loaders import TextLoader
+from langchain.document_loaders import TextLoader, DirectoryLoader
 from typing import List
 from flask import jsonify
 
 os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
 
 text_path = "data/attention_is_all_you_need.txt"
-index_path = "index/faiss_2.index"
+index_path = "index/faiss_csv.index"
 
 def num_tokens(text: str) -> int:
     """Return the number of tokens in a string."""
@@ -26,6 +26,12 @@ def num_tokens(text: str) -> int:
 def load_documents() -> List:
     loader = TextLoader(text_path,encoding='utf-8')
     return loader.load()
+
+def load_raw_documents() -> List:
+    loader = DirectoryLoader('./docs/csv', glob="*.csv")
+
+    return loader.load()
+
 
 def split_chunks(sources: List) -> List:
     chunks = []
@@ -43,7 +49,8 @@ def generate_index(chunks: List, embeddings) -> FAISS:
 def create_chunks_and_embeddings():
     try:
         print("before load doc")
-        sources = load_documents()
+        #sources = load_documents()
+        sources = load_raw_documents()
         # with open('data/attention_is_all_you_need.txt', 'r', encoding='utf-8') as f:
         #     text = f.read()
 

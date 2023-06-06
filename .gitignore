@@ -1,2 +1,5 @@
 myenv/
 __pycache__/
+data/
+index/
+config.yaml

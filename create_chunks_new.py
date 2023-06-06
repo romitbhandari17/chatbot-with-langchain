@@ -10,7 +10,7 @@ from langchain.chains import ConversationalRetrievalChain
 import textract
 from flask import jsonify
 
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = "xxxxyyyy"
 
 
 # You MUST add your PDF to local files in this notebook (folder icon on left hand side of screen)

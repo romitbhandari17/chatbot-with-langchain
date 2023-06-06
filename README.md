@@ -1,4 +1,4 @@
-# MBAGPT: Chatting with Multiple Data Sources
+# Chatbot with PDF as Input using Open AI Models and Langchain
 
 This is a chat application that leverages the power of Langchain conversational retrieval chain to provide conversational responses with access to a data source either PDF or CSV. Typically, following steps are followed:
 - The Input data source is first converted to text file, divided into chunks using langchain Recursive Character TextSplitter.

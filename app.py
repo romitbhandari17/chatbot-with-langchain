@@ -8,8 +8,8 @@ from flask_cors import CORS, cross_origin
 from flask import request
 
 #from handle_file import handle_file
-from create_chunks import create_chunks_and_embeddings
-from question_answers import answer_question_from_embeddings
+from generate_index import generate_index_store_externally
+from question_answers import answer_question_from_external_db
 
 logging.basicConfig(
     level=logging.INFO,
@@ -44,17 +44,17 @@ def create_app():
 
 app = create_app()
 
-@app.route(f"/create_embeddings", methods=["GET"])
+@app.route(f"/generate_index", methods=["GET"])
 @cross_origin(supports_credentials=True)
 def process_file():
     try:
-        '''with open('create_embeddings_rankings.py', 'r') as file:
-            code = file.read()
+        # with open('create_embeddings_rankings.py', 'r') as file:
+        #     code = file.read()
         
-        exec(code)'''
-
+        # exec(code)
         #vector_db = VectorDB.get_instance()
-        create_embeddings_response = create_chunks_and_embeddings()
+
+        create_embeddings_response = generate_index_store_externally()
         return create_embeddings_response
     except Exception as e:
         logging.error(str(e))
@@ -65,17 +65,16 @@ def process_file():
 @cross_origin(supports_credentials=True)
 def answer_question():
     try:
-        
-        '''show_chatbot_response = show_chatbot()
-        return show_chatbot_response'''
+        # show_chatbot_response = show_chatbot()
+        # return show_chatbot_response
 
         params = request.get_json()
         print(params)
         question = params["question"]
 
-        answer_question_response = answer_question_from_embeddings(
-            question)
-        return answer_question_response
+        answer_question_response = answer_question_from_external_db(question)
+
+        return jsonify({"answer": answer_question_response['answer']})
     except Exception as e:
         return str(e)
     
